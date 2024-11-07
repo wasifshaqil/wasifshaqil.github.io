@@ -130,6 +130,29 @@
 			<script src="assets/js/breakpoints.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
+			<script>
+				(function() {
+					const favicon = document.getElementById('favicon');
+		
+					function updateFavicon(theme) {
+						if (theme === 'dark') {
+							favicon.href = 'images/WS.png'; // Path to dark mode favicon
+						} else {
+							favicon.href = 'images/WS_Light.png'; // Path to light mode favicon
+						}
+					}
+		
+					// Check the initial theme preference
+					if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+						updateFavicon('dark');
+					}
+		
+					// Listen for changes in the color scheme
+					window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+						updateFavicon(e.matches ? 'dark' : 'light');
+					});
+				})();
+			</script>
 
 	</body>
 </html>
